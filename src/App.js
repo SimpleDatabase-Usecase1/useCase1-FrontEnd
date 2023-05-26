@@ -8,7 +8,7 @@ import Account from './components/Account';
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login/>}/>
+      <Route path="/" element={<Login/>}/>
       <Route path="/home" element={<Home/>}/>
       <Route path="/auditor" element={<Auditor/>}/>
       <Route path="/account" element={<Account/>}/>
