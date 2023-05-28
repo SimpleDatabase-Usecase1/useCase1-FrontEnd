@@ -1,10 +1,18 @@
 import React from 'react'
-import {Navbar, Nav} from 'react-bootstrap'
+import {Navbar, Nav, Button} from 'react-bootstrap'
+// import { Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 
+// import Container from 'react-bootstrap/Container';
+
 const NavBar = () => {
+
+  const handleLogout = ({}) => {
+
+  }
+
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar collapseOnSelect bg="light" expand="lg" className="p-3">
     {/* Page 1 - home */}
       <LinkContainer to="/home">
         <Navbar.Brand>Home Page</Navbar.Brand>
@@ -20,6 +28,14 @@ const NavBar = () => {
           <LinkContainer to="/auditor">
             <Nav.Link>Auditor</Nav.Link>
           </LinkContainer>
+        </Nav>
+
+        <Nav className="gap-5">
+          <Button type='button' onClick={handleLogout}>Log Out</Button>
+            {/* <Nav.Link className="btn btn-primary" href="#">Login</Nav.Link>
+            <Nav.Link eventKey={2} className="btn btn-light text-black" href="#">
+              Sign up
+          </Nav.Link> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
