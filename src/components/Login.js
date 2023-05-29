@@ -4,9 +4,8 @@ import './css/login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-
 function Login () {
- 
+  
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -25,7 +24,9 @@ function Login () {
         console.log("SUCCESS");
         sessionStorage.setItem("auth", response?.data?.status);
         sessionStorage.setItem("usernames", JSON.stringify(response?.data?.username));
-        console.log(response?.data?.username);
+        sessionStorage.setItem("role", response?.data?.keyword);
+        setUsername(' ');
+        setPassword(' ');
         navigate('/home');
       }
       else{
