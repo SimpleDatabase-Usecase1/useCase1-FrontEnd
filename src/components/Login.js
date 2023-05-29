@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import './css/login.css'
-// import axiosInstance from '../service/AxiosInstance'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -22,12 +21,16 @@ function Login () {
       password: password
     }).then((response) => {
       console.log("it reached here in the .then")
-      if(response?.data?.message === 'Login Successful' && response?.data?.status === true){
+      if(response?.data?.message === 'Login Successful' && response?.data?.status === true && response?.status === 200){
         console.log("SUCCESS");
+        sessionStorage.setItem("auth", response?.data?.status);
+        sessionStorage.setItem("usernames", JSON.stringify(response?.data?.username));
+        console.log(response?.data?.username);
         navigate('/home');
       }
       else{
         console.log("DID NOT WORK`");
+        console.log(JSON.parse(sessionStorage.getItem("auth")))
         alert('Incorrect Username or Password')
       }
     })
