@@ -1,14 +1,23 @@
 import React from 'react'
-import {Navbar, Nav, Button} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
 // import { Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
+import { useNavigate } from "react-router-dom";
 
 // import Container from 'react-bootstrap/Container';
 
 const NavBar = () => {
 
-  const handleLogout = ({}) => {
+  const history = useNavigate();
+  var authentication = JSON.parse(sessionStorage.getItem("auth"));
+  var user = sessionStorage.getItem("usernames");
 
+  const handleLogout = () => {
+    if(authentication) {
+      sessionStorage.clear();
+      history('/');
+      
+    }
   }
 
   return (
@@ -30,12 +39,15 @@ const NavBar = () => {
           </LinkContainer>
         </Nav>
 
-        <Nav className="gap-5">
-          <Button type='button' onClick={handleLogout}>Log Out</Button>
-            {/* <Nav.Link className="btn btn-primary" href="#">Login</Nav.Link>
-            <Nav.Link eventKey={2} className="btn btn-light text-black" href="#">
-              Sign up
-          </Nav.Link> */}
+        <Nav className="collapse navbar-collapse justify-content-end">
+          {authentication ? 
+          <NavDropdown title={user.replace(/['"]+/g, '')}>
+            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+          </NavDropdown> :
+          <LinkContainer to="/">
+            <Nav.Link>Login</Nav.Link>
+          </LinkContainer>
+          }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
