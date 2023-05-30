@@ -7,36 +7,9 @@ import { useState } from 'react';
 
 const AddUser = (props) => {
 
-    // const URL = 'http://localhost:8081/addAgent';
-
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [keyword, setKeyword] = useState('')
-    // const [show, setShow] = useState(props.show)
-
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
-        
-    //     await axios.post(URL, {
-    //         id: props.userid,
-    //         username: username,
-    //         password: password,
-    //         keyword: keyword
-    //     }).then((response) => {
-    //         // console.log(response);
-    //         if(response?.status !== 200){
-    //             throw new Error('Something went wrong');
-    //         }
-    //         return response?.data
-    //     }).then((data) => {
-    //         props.toggle();
-    //         console.log(data);
-    //         // setAddUsers([...addUsers, data])
-
-    //     }).catch((e) => {
-    //         console.log(e)
-    //     });
-    // }
     
     return (
         <>
@@ -46,16 +19,9 @@ const AddUser = (props) => {
 
         <Modal show={props.show} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
+          <Modal.Title>Add Agent</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            {/* <Form onSubmit={(e) => {
-                e.preventDefault();
-                setUsername(' ')
-                setPassword(' ')
-                setKeyword(' ')
-                props.handleSubmit(username, password, keyword, props.userid)
-            }}> */}
             <Form>
                 <Form.Group className="mb-2" controlId="usernameInput">
                 <Form.Label>Username</Form.Label>

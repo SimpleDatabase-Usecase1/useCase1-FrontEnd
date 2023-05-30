@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AddUser from './modal/AddUser';
+import ConfirmDelete from './modal/ConfirmDelete';
 import NavBar from './NavBar'
 
 function Account() {
@@ -51,7 +52,6 @@ function Account() {
         toggleShow();
         console.log(data);
         setUsers([...users, data]);
-        // setAddUsers([...addUsers, data])
 
     }).catch((e) => {
         console.log(e)
@@ -91,7 +91,7 @@ function Account() {
                 <td> {user.password} </td>
                 <td> {user.keyword} </td>
                 <td> <button className='btn btn-warning'>Update</button> </td>
-                <td> <button className='btn btn-danger'>Delete</button> </td>
+                <ConfirmDelete userid={user.id}/>
               </tr>
               ))}
             </tbody>
