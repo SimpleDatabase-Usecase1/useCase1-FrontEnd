@@ -38,20 +38,20 @@ function Login () {
   }
 
   return (
-    <Form>
+    <div className='container'>
+      <Form>
       <div className='form-group'>
+      <h3 className="login-title">Sign In</h3>
         <label htmlFor="usernameInput">Username</label>
         <input type="username" className="form-control" id="usernameInput" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)}/>
       </div>
       <div className='form-group'>
         <label htmlFor="passwordInput">Password</label>
-        <input type="password" className="form-control" id="passwordInput" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
-
-         
+        <input type="password" className="form-control" id="passwordInput" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>  
       </div>
-      <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-      
-    </Form>
+      <button type="button" className="btn btn-outline-primary" onClick={handleSubmit}>Submit</button>
+      </Form>
+    </div>
 
   )
 }

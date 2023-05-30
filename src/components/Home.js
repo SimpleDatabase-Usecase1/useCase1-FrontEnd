@@ -5,7 +5,8 @@ function Home() {
   return (
     <div>
       <NavBar/>
-      <h1>This is the Home page</h1>
+      <h4>This is the Home page</h4>
+      <p>This is a public page for all agents to visit</p>
     </div>
   )
 }
