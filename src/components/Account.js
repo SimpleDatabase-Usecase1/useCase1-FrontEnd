@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AddUser from './modal/AddUser';
 import ConfirmDelete from './modal/ConfirmDelete';
+import UpdateUser from './modal/UpdateUser';
 import NavBar from './NavBar'
 
 function Account() {
@@ -90,7 +91,7 @@ function Account() {
                 <td> {user.username} </td>
                 <td> {user.password} </td>
                 <td> {user.keyword} </td>
-                <td> <button className='btn btn-warning'>Update</button> </td>
+                <UpdateUser userid={user.id} username={user.username} userpass={user.password} userkey={user.keyword}/>
                 <ConfirmDelete userid={user.id}/>
               </tr>
               ))}
