@@ -6,13 +6,15 @@ import NavBar from './NavBar'
 function Account() {
 
   var getRole = sessionStorage.getItem("role");
-  const URL = 'http://localhost:8081/getAllAgents';
 
-  //modal to show add users
-  const [modalAddShow, setModalAddShow] = useState(false);
+  //URL for the post and get request
+  const URL = 'http://localhost:8081/getAllAgents';
+  const URL2 = 'http://localhost:8081/addAgent';
+
 
   const [users, setUsers] = useState([]);
 
+  //get request to display the user data
   useEffect(() => {
     const fetchUserInfo = async() => {
       const { data } = await axios.get(URL);
@@ -21,6 +23,7 @@ function Account() {
     fetchUserInfo();
   }, []);
 
+  //grab the largest id 
   const getUserId = () => {
     var largestId = 0
     users.forEach(user => {
@@ -28,6 +31,35 @@ function Account() {
     })
     return largestId + 1
   }
+
+  //handle submit for adding a user
+  const handleSubmit = async(username, password, keyword, id, e) => {
+    e.preventDefault();
+    
+    await axios.post(URL2, {
+        id: id,
+        username: username,
+        password: password,
+        keyword: keyword
+    }).then((response) => {
+        // console.log(response);
+        if(response?.status !== 200){
+            throw new Error('Something went wrong');
+        }
+        return response?.data
+    }).then((data) => {
+        toggleShow();
+        console.log(data);
+        setUsers([...users, data]);
+        // setAddUsers([...addUsers, data])
+
+    }).catch((e) => {
+        console.log(e)
+    });
+  }
+
+  //modal to show add users
+  const [modalAddShow, setModalAddShow] = useState(false);
 
   const toggleShow = () => {
     setModalAddShow(!modalAddShow);
@@ -65,11 +97,7 @@ function Account() {
             </tbody>
           </table>
         </div>
-        <div className="d-grid gap-2 col-6 mx-auto">
-          <button type='button' className='btn btn-outline-primary btn-lg' onClick={toggleShow}>Add User</button>
-          {/* <AddUser show={modalAddShow} onHide={() => setModalAddShow(false)} userid={getUserId()} users={users}/> */}
-          <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users}/>
-        </div>
+        <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users} handleSubmit={handleSubmit}/>
       </div> :
           <div>
             <h2> This is the Account Modification page</h2>

@@ -2,44 +2,48 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
 
 const AddUser = (props) => {
 
-    const URL = 'http://localhost:8081/addAgent';
+    // const URL = 'http://localhost:8081/addAgent';
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [keyword, setKeyword] = useState('')
     // const [show, setShow] = useState(props.show)
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
         
-        await axios.post(URL, {
-            id: props.userid,
-            username: username,
-            password: password,
-            keyword: keyword
-        }).then((response) => {
-            // console.log(response);
-            if(response?.status !== 200){
-                throw new Error('Something went wrong');
-            }
-            return response?.data
-        }).then((data) => {
-            props.toggle();
-            console.log(data);
-            // setAddUsers([...addUsers, data])
+    //     await axios.post(URL, {
+    //         id: props.userid,
+    //         username: username,
+    //         password: password,
+    //         keyword: keyword
+    //     }).then((response) => {
+    //         // console.log(response);
+    //         if(response?.status !== 200){
+    //             throw new Error('Something went wrong');
+    //         }
+    //         return response?.data
+    //     }).then((data) => {
+    //         props.toggle();
+    //         console.log(data);
+    //         // setAddUsers([...addUsers, data])
 
-        }).catch((e) => {
-            console.log(e)
-        });
-    }
+    //     }).catch((e) => {
+    //         console.log(e)
+    //     });
+    // }
     
     return (
         <>
+        <div className="d-grid gap-2 col-6 mx-auto">
+          <button type='button' className='btn btn-outline-primary btn-lg' onClick={props.toggle}>Add User</button>
+        </div>
+
         <Modal show={props.show} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add User</Modal.Title>
@@ -95,7 +99,7 @@ const AddUser = (props) => {
         <Button variant="secondary" onClick={props.toggle}>
             Close
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button variant="primary" onClick={(event) => props.handleSubmit(username, password, keyword, props.userid, event)}>
             Add User
         </Button>
         </Modal.Footer>
