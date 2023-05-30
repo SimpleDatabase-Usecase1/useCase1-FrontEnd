@@ -11,15 +11,15 @@ label {
 
 .form-control {
     display: block;
-    width: 20rem !important;
+    width: 100%;
     height: calc(2.25rem);
     font-size: 1rem;
     line-height: 2;
     color: #4a4f53;
     border-bottom: 1px solid #91979b;
-    border-left: none !important;
+    /* border-left: none !important;
     border-right: none !important;
-    border-top: none !important;
+    border-top: none !important; */
     margin-bottom: 0.5rem;
     outline: none;
 }

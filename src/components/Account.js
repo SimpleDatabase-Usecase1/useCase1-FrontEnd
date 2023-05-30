@@ -1,11 +1,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import AddUser from './modal/AddUser';
 import NavBar from './NavBar'
 
 function Account() {
 
   var getRole = sessionStorage.getItem("role");
   const URL = 'http://localhost:8081/getAllAgents';
+
+  //modal to show add users
+  const [modalAddShow, setModalAddShow] = useState(false);
 
   const [users, setUsers] = useState([]);
 
@@ -17,15 +21,27 @@ function Account() {
     fetchUserInfo();
   }, []);
 
+  const getUserId = () => {
+    var largestId = 0
+    users.forEach(user => {
+      largestId = Math.max(largestId, user.id)
+    })
+    return largestId + 1
+  }
+
+  const toggleShow = () => {
+    setModalAddShow(!modalAddShow);
+  }
+
   return (
     <div>
       <NavBar/>
       <br/>
+      {/* Only root users (admin/manager) can see the table*/}
+      {getRole === 'root' ? 
       <div className='account'>
         <div className='container'>
-          
-          {/* Only root users (admin/manager) can see the table*/}
-          {getRole === 'root' ? 
+        
           <table className='table'>
             <thead>
               <tr>
@@ -47,18 +63,19 @@ function Account() {
               </tr>
               ))}
             </tbody>
-            <br/>
-            <div className="d-grid gap-2 col-50 mx-auto">
-              <button type='button' className='btn btn-outline-primary btn-lg'>Add User</button>
-            </div>
-          </table> :
+          </table>
+        </div>
+        <div className="d-grid gap-2 col-6 mx-auto">
+          <button type='button' className='btn btn-outline-primary btn-lg' onClick={toggleShow}>Add User</button>
+          {/* <AddUser show={modalAddShow} onHide={() => setModalAddShow(false)} userid={getUserId()} users={users}/> */}
+          <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users}/>
+        </div>
+      </div> :
           <div>
             <h2> This is the Account Modification page</h2>
             <p>This page can only be modified by the manager/admin</p>
           </div>
           }
-          </div>
-      </div>
     </div>
 
   )
