@@ -6,6 +6,7 @@ function Auditor() {
     <div>
       <NavBar/>
       <h1>This is the Auditor Page</h1>
+      <p>This page has limited access</p>
     </div>
   )
 }

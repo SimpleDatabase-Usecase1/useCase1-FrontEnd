@@ -1,5 +1,26 @@
 .form, .form-group{
-    padding: 0.5rem;
+    display: -ms-grid;
+    display: grid;
+    width: 30rem;
+    padding-bottom: 1rem;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 500;
+}
+
+.container {
+    height: 25rem;
+    width: 25rem;
+    background: transparent;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 label {
@@ -17,19 +38,17 @@ label {
     line-height: 2;
     color: #4a4f53;
     border-bottom: 1px solid #91979b;
-    /* border-left: none !important;
-    border-right: none !important;
-    border-top: none !important; */
     margin-bottom: 0.5rem;
     outline: none;
 }
 
-.btn-primary {
+.btn-outline-primary {
     border: 0.5 solid #4a4f53;
     color: #4a4f53;
 }
 
 .btn {
+    width: 100%;
     display: inline-block;
     font-weight: 400;
     text-align: center;
