@@ -31,8 +31,8 @@ function App() {
         <Route path='/account' element={<Account/>}/>
       </Route>
 
-      {/* Audtor page can be access by root, auditor, and associate [page 3]*/}
-      <Route element={<RoleAccess roles={["root", "associate", "auditor"]}/>}>
+      {/* Audtor page can be access by root, auditor [page 3]*/}
+      <Route element={<RoleAccess roles={["root", "auditor"]}/>}>
         <Route path='/auditor' element={<Auditor/>}/>
       </Route>
 
