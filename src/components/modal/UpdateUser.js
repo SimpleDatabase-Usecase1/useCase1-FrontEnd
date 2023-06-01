@@ -15,7 +15,7 @@ const UpdateUser = (props) => {
     const [password, setPassword] = useState(props.userpass);
     const [keyword, setKeyword] = useState(props.userkey);
 
-    const url = 'http://localhost:8081/updateAgent/' + props.userid;
+    const url = 'http://52.23.195.111:8080/updateAgent/' + props.userid;
 
     const handleUpdate = async(e) => {
         e.preventDefault()
