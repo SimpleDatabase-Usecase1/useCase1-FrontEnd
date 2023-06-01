@@ -9,7 +9,7 @@ const ConfirmDelete = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const url = 'http://localhost:8081/deleteAgent/' + props.userid;
+    const url = 'http://52.23.195.111:8080/deleteAgent/' + props.userid;
 
     const handleDelete = async() => {
         await axios.delete(url).then((res) => {

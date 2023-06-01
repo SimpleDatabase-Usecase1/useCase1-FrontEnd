@@ -11,7 +11,7 @@ function Login () {
 
   const navigate = useNavigate();
 
-  const URL = 'http://localhost:8081/login';
+  const URL = 'http://52.23.195.111:8080/login';
 
   const handleSubmit = async() => {
 

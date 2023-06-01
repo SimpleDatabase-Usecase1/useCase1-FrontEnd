@@ -10,8 +10,8 @@ function Account() {
   var getRole = sessionStorage.getItem("role");
 
   //URL for the post and get request
-  const URL = 'http://localhost:8081/getAllAgents';
-  const URL2 = 'http://localhost:8081/addAgent';
+  const URL = 'http://52.23.195.111:8080/getAllAgents';
+  const URL2 = 'http://52.23.195.111:8080/addAgent';
 
 
   const [users, setUsers] = useState([]);
