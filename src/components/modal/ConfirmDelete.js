@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
 const ConfirmDelete = (props) => {
 
     const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const ConfirmDelete = (props) => {
         <>
         <>
         <td>
-            <button className='btn btn-danger' onClick={handleShow}>Delete</button>
+            <button className='btn btn-danger btn-sm' onClick={handleShow}>Delete</button>
         </td>
         </>
 
@@ -35,7 +36,7 @@ const ConfirmDelete = (props) => {
             <Modal.Header closeButton>
             <Modal.Title>Delete Agent</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Are you sure you want to delete this agent?</Modal.Body>
+            <Modal.Body style={{textAlign: 'center'}}>Are you sure you want to delete this agent?</Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
                 Cancel
