@@ -2,12 +2,17 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AddUser from './modal/AddUser';
 import ConfirmDelete from './modal/ConfirmDelete';
+import NonAccessible from './modal/NonAccessible';
+import NonAccessibleDelete from './modal/NonAccessibleDelete';
+import UpdateNonAccessible from './modal/UpdateNonAccessible';
 import UpdateUser from './modal/UpdateUser';
 import NavBar from './NavBar'
 
 function Account() {
 
   var getRole = sessionStorage.getItem("role");
+  var user = sessionStorage.getItem("usernames");
+  var name = user.replace(/['"]+/g, '');
 
   //URL for the post and get request
   const URL = 'http://52.23.195.111:8080/getAllAgents';
@@ -70,8 +75,6 @@ function Account() {
     <div>
       <NavBar/>
       <br/>
-      {/* Only root users (admin/manager) can see the table*/}
-      {getRole === 'root' ? 
       <div className='account'>
         <div className='container'>
         
@@ -91,20 +94,23 @@ function Account() {
                 <td> {user.username} </td>
                 <td> {user.password} </td>
                 <td> {user.keyword} </td>
-                <UpdateUser userid={user.id} username={user.username} userpass={user.password} userkey={user.keyword}/>
-                <ConfirmDelete userid={user.id}/>
+                {getRole === 'root' ? 
+                <UpdateUser userid={user.id} username={user.username} userpass={user.password} userkey={user.keyword}/> :
+                <UpdateNonAccessible toggle={toggleShow} show={modalAddShow}/>
+                }
+                {getRole === 'root' && name === 'admin' ? <ConfirmDelete userid={user.id}/> : <NonAccessibleDelete toggle={toggleShow} show={modalAddShow}/>}
               </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users} handleSubmit={handleSubmit}/>
-      </div> :
-          <div>
-            <h2> This is the Account Modification page</h2>
-            <p>This page can only be modified by the manager/admin</p>
-          </div>
-          }
+        {/* Only admins are able to add new users */}
+        
+        {getRole === 'root' && name === 'admin' ? 
+        <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users} handleSubmit={handleSubmit}/> :
+        <NonAccessible toggle={toggleShow} show={modalAddShow}/>
+        }
+      </div>
     </div>
 
   )

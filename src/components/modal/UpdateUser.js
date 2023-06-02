@@ -3,6 +3,7 @@ import { React, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import '../css/modalHeader.css';
 
 const UpdateUser = (props) => {
 
@@ -11,7 +12,7 @@ const UpdateUser = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [username, setUsername] = useState(props.username);
+    // const [username, setUsername] = useState(props.username);
     const [password, setPassword] = useState(props.userpass);
     const [keyword, setKeyword] = useState(props.userkey);
 
@@ -21,7 +22,7 @@ const UpdateUser = (props) => {
         e.preventDefault()
         await axios.put(url, {
             id: props.userid,
-            username: username,
+            username: props.username,
             password: password,
             keyword: keyword
         }).then((res) => {
@@ -39,7 +40,7 @@ const UpdateUser = (props) => {
     <>
     <>
     <td>
-        <button className='btn btn-warning' onClick={handleShow}>Update</button>
+        <button className='btn btn-warning btn-sm' onClick={handleShow}>Update</button>
     </td>
     </>
 
@@ -54,9 +55,8 @@ const UpdateUser = (props) => {
                 <Form.Control
                     type="text"
                     placeholder="customer1"
-                    value={username}
-                    onChange={(e) => {setUsername(e.target.value);}}
-                    autoFocus
+                    value={props.username}
+                    disabled={true}
                 />
                 </Form.Group>
                 <Form.Group className="mb-2" controlId="idInput">
@@ -74,6 +74,7 @@ const UpdateUser = (props) => {
                     placeholder="123"
                     value={password}
                     onChange={(e) => {setPassword(e.target.value);}}
+                    autoFocus
                 />
                 </Form.Group>
                 <Form.Group className="mb-2" controlId="keywordInput">

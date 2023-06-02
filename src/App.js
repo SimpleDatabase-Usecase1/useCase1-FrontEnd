@@ -26,13 +26,13 @@ function App() {
         <Route path='/home' element={<Home/>}></Route>
       </Route>
 
-      {/* Manage account can be access by root and associate aka (view only) [page 2]*/}
+      {/* Manage account can be access by root and associate aka (view only not edit/add) [page 2]*/}
       <Route element={<RoleAccess roles={["root", "associate"]}/>}>
         <Route path='/account' element={<Account/>}/>
       </Route>
 
       {/* Audtor page can be access by root, auditor [page 3]*/}
-      <Route element={<RoleAccess roles={["root", "auditor"]}/>}>
+      <Route element={<RoleAccess roles={["root", "auditor", "associate"]}/>}>
         <Route path='/auditor' element={<Auditor/>}/>
       </Route>
 

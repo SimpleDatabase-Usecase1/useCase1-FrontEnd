@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 // import axios from 'axios';
 import { useState } from 'react';
+import '../css/modalHeader.css';
 
 const AddUser = (props) => {
 
