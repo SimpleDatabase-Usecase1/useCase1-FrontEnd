@@ -41,7 +41,7 @@ function Auditor() {
       }
       </div>
       :
-      <p>This is the Home Page</p>
+      <p>This is the Auditor Page</p>
       }
     </div>
   )
