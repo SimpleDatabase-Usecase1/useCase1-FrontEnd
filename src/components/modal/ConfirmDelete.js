@@ -5,6 +5,10 @@ import Modal from 'react-bootstrap/Modal';
 
 const ConfirmDelete = (props) => {
 
+    var getRole = sessionStorage.getItem("role");
+    var user = sessionStorage.getItem("usernames");
+    var name = user.replace(/['"]+/g, '');
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -31,7 +35,8 @@ const ConfirmDelete = (props) => {
             <button className='btn btn-danger btn-sm' onClick={handleShow}>Delete</button>
         </td>
         </>
-
+        
+        {getRole === 'root' && name === 'admin' ?
         <Modal show={show} onHide={handleClose} centered>
             <Modal.Header closeButton>
             <Modal.Title>Delete Agent</Modal.Title>
@@ -45,7 +50,20 @@ const ConfirmDelete = (props) => {
                 Confirm
             </Button>
             </Modal.Footer>
+        </Modal> :
+        <Modal show={show} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+            <Modal.Title>Not Accessible</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{textAlign: 'center'}}>Only Admins are able to delete existing agents</Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Close
+            </Button>
+            </Modal.Footer>
         </Modal>
+        }
+
         </>
     )
 }

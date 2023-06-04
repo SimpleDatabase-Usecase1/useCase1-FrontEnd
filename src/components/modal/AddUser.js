@@ -8,6 +8,10 @@ import '../css/modalHeader.css';
 
 const AddUser = (props) => {
 
+    var getRole = sessionStorage.getItem("role");
+    var user = sessionStorage.getItem("usernames");
+    var name = user.replace(/['"]+/g, '');
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [keyword, setKeyword] = useState('')
@@ -18,6 +22,7 @@ const AddUser = (props) => {
           <button type='button' className='btn btn-outline-primary btn-lg' onClick={props.toggle}>Add User</button>
         </div>
 
+        {getRole === 'root' && name === 'admin' ? 
         <Modal show={props.show} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add Agent</Modal.Title>
@@ -70,7 +75,20 @@ const AddUser = (props) => {
             Add User
         </Button>
         </Modal.Footer>
+        </Modal> 
+        :
+        <Modal show={props.show} onHide={props.toggle} centered>
+            <Modal.Header closeButton>
+            <Modal.Title>Not Accessible</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{textAlign: 'center'}}>Only Admins are able to add new agents</Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={props.toggle}>
+                Close
+            </Button>
+            </Modal.Footer>
         </Modal>
+        }
         </>
       );
 }

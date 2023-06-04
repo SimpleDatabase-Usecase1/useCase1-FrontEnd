@@ -2,17 +2,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AddUser from './modal/AddUser';
 import ConfirmDelete from './modal/ConfirmDelete';
-import NonAccessible from './modal/NonAccessible';
-import NonAccessibleDelete from './modal/NonAccessibleDelete';
-import UpdateNonAccessible from './modal/UpdateNonAccessible';
 import UpdateUser from './modal/UpdateUser';
 import NavBar from './NavBar'
 
 function Account() {
-
-  var getRole = sessionStorage.getItem("role");
-  var user = sessionStorage.getItem("usernames");
-  var name = user.replace(/['"]+/g, '');
 
   //URL for the post and get request
   const URL = 'http://52.23.195.111:8080/getAllAgents';
@@ -94,22 +87,15 @@ function Account() {
                 <td> {user.username} </td>
                 <td> {user.password} </td>
                 <td> {user.keyword} </td>
-                {getRole === 'root' ? 
-                <UpdateUser userid={user.id} username={user.username} userpass={user.password} userkey={user.keyword}/> :
-                <UpdateNonAccessible toggle={toggleShow} show={modalAddShow}/>
-                }
-                {getRole === 'root' && name === 'admin' ? <ConfirmDelete userid={user.id}/> : <NonAccessibleDelete toggle={toggleShow} show={modalAddShow}/>}
+                <UpdateUser userid={user.id} username={user.username} userpass={user.password} userkey={user.keyword}/> 
+                <ConfirmDelete userid={user.id}/>
               </tr>
               ))}
             </tbody>
           </table>
         </div>
         {/* Only admins are able to add new users */}
-        
-        {getRole === 'root' && name === 'admin' ? 
-        <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users} handleSubmit={handleSubmit}/> :
-        <NonAccessible toggle={toggleShow} show={modalAddShow}/>
-        }
+        <AddUser show={modalAddShow} toggle={toggleShow} userid={getUserId()} users={users} handleSubmit={handleSubmit}/>
       </div>
     </div>
 

@@ -7,6 +7,8 @@ import '../css/modalHeader.css';
 
 const UpdateUser = (props) => {
 
+    var getRole = sessionStorage.getItem("role");
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -44,6 +46,7 @@ const UpdateUser = (props) => {
     </td>
     </>
 
+    {getRole === 'root' ?
     <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
         <Modal.Title>Update Agent</Modal.Title>
@@ -96,7 +99,22 @@ const UpdateUser = (props) => {
             Confirm
         </Button>
         </Modal.Footer>
+    </Modal> :
+
+    <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header closeButton>
+                <Modal.Title>Not Accessible</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{textAlign: 'center'}}>Only Admins and Managers are able to grant access</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
     </Modal>
+
+    }
+    
     </>
   )
 }
