@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 
 function Home() {
 
-  const initialText = 'Double click to change text';
+  const initialText = 'Double click to change text if you are an auditor';
   const [textValue, setTextValue] = useState(JSON.parse(sessionStorage.getItem('homeState')) || initialText);
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -27,7 +27,7 @@ function Home() {
       
       <br/>
 
-      {getRole === 'root' || getRole === 'auditor' ?
+      {getRole === 'auditor' ?
       <div>
       {isEditMode ? 
         <div>
@@ -41,7 +41,7 @@ function Home() {
       }
       </div>
       :
-      <p>This is the Home Page</p>
+      textValue
       }
     </div>
   )

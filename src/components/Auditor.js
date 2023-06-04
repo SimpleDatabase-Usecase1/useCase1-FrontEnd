@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 
 function Auditor() {
 
-  const initialText = 'This is the auditor page. Double click to edit this text';
+  const initialText = 'This is the auditor page. Double click to edit this text if you are an auditor';
   const [textValue, setTextValue] = useState(JSON.parse(sessionStorage.getItem('auditorState')) || initialText);
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -27,7 +27,7 @@ function Auditor() {
       
       <br/>
 
-      {getRole === 'root' || getRole === 'auditor' ?
+      {getRole === 'auditor' ?
       <div>
       {isEditMode ? 
         <div>
@@ -41,7 +41,7 @@ function Auditor() {
       }
       </div>
       :
-      <p>This is the Auditor Page</p>
+      textValue
       }
     </div>
   )
